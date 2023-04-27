@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import ContactList from "./contacts/ContactsList";
 import initialContacts from '../components/contacts/contacts.json'
-import ContactForm from "./phonebook/contactForm";
+import ContactForm from "./phonebook/ContactForm";
 import { nanoid } from 'nanoid'
+import Filter from "./contacts/Filter";
 
 class App extends Component {
 
       state = {
         contacts: initialContacts,
-        name: ''
+        filter: '',
   }
   
   deleteContact = (contactId) => {
@@ -42,7 +43,7 @@ class App extends Component {
         <ContactForm onSubmit={this.addContact} />
 
         <h2>Contacts</h2>
-        {/* <Filter /> */}
+        <Filter />
         <ContactList
           contacts={this.state.contacts}
           onDeleteContact={this.deleteContact}
