@@ -20,6 +20,11 @@ class App extends Component {
 
   addContact = (data) => {
     
+    if (this.state.contacts.filter(contact => contact.name === data.name).length > 0) {
+      alert(`${data.name} is already in contacts`)
+      return
+    }
+
     const id = nanoid();
     const contact = { id: id, name: data.name, number: data.number };
     const contacts = [contact, ...this.state.contacts];
@@ -61,7 +66,7 @@ class App extends Component {
           filter={this.state.filter}
           onChange={this.changeFilter}
         />
-        
+
         <ContactList
           contacts={visibleContacts}
           onDeleteContact={this.deleteContact}
