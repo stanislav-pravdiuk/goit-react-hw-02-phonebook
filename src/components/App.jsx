@@ -7,16 +7,16 @@ import Filter from "./contacts/Filter";
 
 class App extends Component {
 
-      state = {
-        contacts: initialContacts,
-        filter: '',
-  }
+  state = {
+    contacts: initialContacts,
+    filter: '',
+  };
   
   deleteContact = (contactId) => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contactId !== contact.id)
     }))
-  }
+  };
 
   addContact = (data) => {
     
@@ -25,9 +25,23 @@ class App extends Component {
     const contacts = [contact, ...this.state.contacts];
 
     this.setState({ contacts: contacts });
-}
+  };
 
-  render() {    
+  changeFilter = (event) => {
+    this.setState({ filter: event.currentTarget.value })
+    console.log(event.currentTarget.value)
+  };
+
+  getVisibleContacts = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
+  }
+  
+  render() { 
+
+    const visibleContacts = this.getVisibleContacts();
+
     return (
       <div
         style={{
@@ -43,9 +57,13 @@ class App extends Component {
         <ContactForm onSubmit={this.addContact} />
 
         <h2>Contacts</h2>
-        <Filter />
+        <Filter
+          filter={this.state.filter}
+          onChange={this.changeFilter}
+        />
+        
         <ContactList
-          contacts={this.state.contacts}
+          contacts={visibleContacts}
           onDeleteContact={this.deleteContact}
         />
 
