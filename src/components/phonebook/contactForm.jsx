@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import css from './contact-form.module.css'
+import css from './contact-form.module.css';
+import PropTypes from 'prop-types';
 
-class CotactForm extends Component {
+class ContactForm extends Component {
 
         state = {
             name: '',
             number: '',
     }
 
-    hundleInputChange = (event) => {
+    handleInputChange = (event) => {
         const { name, value } = event.currentTarget;
         this.setState({ [name]: value } )
     }
@@ -27,7 +28,9 @@ class CotactForm extends Component {
     
     render() {
         return (
-            <form className={css.contactForm} onSubmit={this.handleSubmit}>
+            <form
+                className={css.contactForm}
+                onSubmit={this.handleSubmit}>
         <label>Name
             <input
                 type="text"
@@ -36,7 +39,7 @@ class CotactForm extends Component {
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 required
                 value={this.state.name}
-                onChange={this.hundleInputChange}        
+                onChange={this.handleInputChange}        
                     />
         </label>
         <label>Number
@@ -47,13 +50,17 @@ class CotactForm extends Component {
                 title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                 required
                 value={this.state.number}
-                onChange={this.hundleInputChange}        
+                onChange={this.handleInputChange}        
                     />
         </label>
         <button type="submit">Add contact</button>        
-    </form>    
+            </form>    
         )
     }
 };
 
-export default CotactForm;
+ContactForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired
+}
+
+export default ContactForm;
