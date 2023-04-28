@@ -35,7 +35,6 @@ class App extends Component {
 
   changeFilter = (event) => {
     this.setState({ filter: event.currentTarget.value })
-    console.log(event.currentTarget.value)
   };
 
   getVisibleContacts = () => {
