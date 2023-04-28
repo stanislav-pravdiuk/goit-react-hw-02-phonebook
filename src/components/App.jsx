@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ContactList from "./contacts/ContactsList";
 import initialContacts from '../components/contacts/contacts.json'
-import ContactForm from "./phonebook/ContactForm";
+import ContactForm from "./phonebook/contactForm";
 import { nanoid } from 'nanoid'
 import Filter from "./contacts/Filter";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
