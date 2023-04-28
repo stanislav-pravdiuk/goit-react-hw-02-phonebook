@@ -4,6 +4,7 @@ import initialContacts from '../components/contacts/contacts.json'
 import ContactForm from "./phonebook/ContactForm";
 import { nanoid } from 'nanoid'
 import Filter from "./contacts/Filter";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 class App extends Component {
 
@@ -19,9 +20,9 @@ class App extends Component {
   };
 
   addContact = (data) => {
-    
+
     if (this.state.contacts.filter(contact => contact.name === data.name).length > 0) {
-      alert(`${data.name} is already in contacts`)
+      Notify.warning(`${data.name} is already in contacts`)
       return
     }
 
@@ -51,7 +52,8 @@ class App extends Component {
       <div
         style={{
           height: '100vh',
-          // display: 'flex',
+          display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 40,

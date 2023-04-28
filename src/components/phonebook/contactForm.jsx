@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import css from './contact-form.module.css'
 
 class CotactForm extends Component {
 
@@ -26,7 +27,7 @@ class CotactForm extends Component {
     
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className={css.contactForm} onSubmit={this.handleSubmit}>
         <label>Name
             <input
                 type="text"
